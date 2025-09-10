@@ -1,116 +1,35 @@
-Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and Node.js  
-===
+Ayush Kulkarni
+Assignment A2
+a2-ayushkulkarni.onrender.com
 
-Due: Monday, September 8, 2025, by 11:59 PM.
-
-This assignment aims to introduce you to creating a prototype two-tiered web application. 
-Your application will include the use of HTML, CSS, JavaScript, and Node.js functionality, with active communication between the client and the server over the life of a user session.
-
-Baseline Requirements
----
-
-There is a large range of application areas and possibilities that meet these baseline requirements. 
-Try to make your application do something useful! A todo list, storing / retrieving high scores for a very simple game... have a little fun with it.
-
-Your application is required to implement the following functionalities (4 pts each, total 20 pts):
-
-- a `Server` which not only serves files, but also maintains a tabular dataset with 3 or more fields related to your application
-- a `Results` functionality which shows the entire dataset residing in the server's memory
-- a `Form/Entry` functionality which allows a user to add or delete data items residing in the server's memory
-- a `Server Logic` which, upon receiving new or modified "incoming" data, includes and uses a function that adds at least one additional derived field to this incoming data before integrating it with the existing dataset
-- the `Derived field` for a new row of data must be computed based on fields already existing in the row. 
-For example, a `todo` dataset with `task`, `priority`, and `creation_date` may generate a new field `deadline` by looking at `creation_date` and `priority`
-
-Your application is required to demonstrate the use of the following concepts:
-
-HTML (4 pts each, total 16 pts):
-- One or more [HTML Forms](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms), with any combination of form tags appropriate for the user input portion of the application
-- A results page displaying all data currently available on the server. You will most likely use a `<table>` tag for this, but `<ul>` or `<ol>` could also work and might be simpler to work with. Alternatively, you can create a single-page app (see Technical Acheivements) but this is not a requirement.
-- All pages should [validate](https://validator.w3.org)
-- If your app contains multple pages, they should all be accessible from the homepage (index.html)
-
-CSS (4 pts each, total 16 pts):
-- CSS styling of the primary visual elements in the application
-- Various CSS Selector functionality must be demonstrated:
-    - Element selectors
-    - ID selectors
-    - Class selectors
-- CSS positioning and styling of the primary visual elements in the application:
-    - Use of either a CSS grid or flexbox for layout
-    - Rules defining fonts for all text used; no default fonts! Be sure to use a web safe font or a font from a web service like [Google Fonts](http://fonts.google.com/)
-- CSS defined in a maintainable, readable form, in external stylesheets 
-
-JavaScript (4 pts):
-- At minimum, a small amount of front-end JavaScript to get / fetch data from the server; a sample is provided in this repository.
-
-Node.js (4 pts):
-- An HTTP Server that delivers all necessary files and data for the application, and also creates the required `Derived Fields` in your data. 
-A starting point is provided in this repository.
-
-Deliverables
----
-
-1. (5 pts) Fork the starting project code repo. The starter code in the repo may be used or discarded as needed.
-2. (60 pts, detailed above) Implement your project with the above requirements.
-3. Test your project to make sure that when someone goes to your main page, it displays correctly.
-4. (5 pts) Deploy your project to Render (or your hosting service of choice), and fill in the appropriate fields in your package.json file.
-5. (5 pts) Ensure that your project at least starts with the proper naming scheme `a2-FirstnameLastname` so we can find it.
-6. (5 pts) Modify the README to the specifications below, and delete all of the instructions originally found in this README.
-7. (5 pts) Create and submit a Pull Request to the original repo. Be sure to include your name in the pull request.
-
-Acheivements
----
-
-Below are suggested technical and design achievements. You can use these to help customize the assignment to your personal interests. These are recommended acheivements, but feel free to create/implement your own... just make sure you thoroughly describe what you did in your README and why it was challenging. ALL ACHIEVEMENTS MUST BE DESCRIBED IN YOUR README IN ORDER TO GET CREDIT FOR THEM. Remember, the highest grade you can get on any individual assignment is a 100%.
-
-*Technical*
-- (5 points) Create a single-page app that both provides a form for users to submit data and always shows the current state of the server-side data. To put it another way, when the user submits data, the server should respond sending back the updated data (including the derived field calculated on the server) and the client should then update its data display.
-
-- (5 points) In addition to a form enabling adding and deleting data on the server, also add the ability to modify existing data.
-
-*Design/UX*
-- (5 points per person, with a max of 10 points) Test your user interface with other students in the class. Define a specific task for them to complete (ideally something short that takes <10 minutes), and then use the [think-aloud protocol](https://en.wikipedia.org/wiki/Think_aloud_protocol) to obtain feedback on your design (talk-aloud is also fine). Important considerations when designing your study:
-
-1. Make sure you start the study by clearly stating the task that you expect your user to accomplish.
-2. You shouldn't provide any verbal instructions on how to use your interface / accomplish the task you give them. Make sure that your interface is clear enough that users can figure it out without any instruction, or provide text instructions from within the interface itself. 
-3. If users get stuck to the point where they give up, you can then provde instruction so that the study can continue, but make sure to discuss this in your README. You won't lose any points for this... all feedback is good feedback!
-
-You'll need to use sometype of collaborative software that will enable you both to see the test subject's screen and listen to their voice as they describe their thoughts, or conduct the studies in person. After completing each study, briefly (one to two sentences for each question) address the following in your README:
-
-1. Provide the last name of each student you conduct the evaluation with.
-2. What problems did the user have with your design?
-3. What comments did they make that surprised you?
-4. What would you change about the interface based on their feedback?
-
-*You do not need to actually make changes based on their feedback*. This acheivement is designed to help gain experience testing user interfaces. If you run two user studies, you should answer two sets of questions. 
-
-FAQ
----
-**Q: Can I use frameworks for this assignment?**
-
-A: No. We'll discuss them later this term, but for right now, we want to see that you can implement these features yourself instead of outsourcing them to an existing framework or library.
-
-**Q: After I delete some data server-side, the data persists on the client side until I refresh the page.**
-
-A: Make sure the client-side copy of the data also reflects the deletion. The server-side and client-side copies of the data should remain in sync at all times.
-
-**Q: Do I have to implement the specific achievements above?**
-
-A: No. As discussed in the instructions, you are free to implement your own. If you're not sure if they'll qualify, check with the instructor.
-
-**Q: If I do a single page for the technical achievement, will I still get credit for the last two criteria in the base requirements?**
-
-Yes.
-
-
-Sample Readme (delete the above when you're ready to submit, and modify the below so with your links and descriptions)
----
-
-## Your Web Application Title
-Include a very brief summary of your project here. Be sure to include the CSS positioning technique you used, and any required instructions to use your application.
+## To-Do List
+This application is designed for tracking tasks. To use the application, enter the respective fields on the left and click submit. The task will appear on the right. To delete a task, click the "X" icon for the respective row. To edit a task, click the wrench icon for that respective row and enter the new values for all the fields as prompted. Priority can be "low", "medium" or "high". Dates are entered in the format YYYY-MM-DD. 
+The CSS positing technique used in this application was the grid display. This was used to display the form on the left side of the page and the tasks on the right side.
 
 ## Technical Achievements
-- **Tech Achievement 1**: Using a combination of...
+- **Tech Achievement 1**: Create a single page app
+I created a single page application that always displays the state of the server data. Immediately when the submit button is clicked, the task is shown on the right side of the page with the calculated "Due Date" field. When the form is edited or deleted, those changes are also immediately visible to the user on the page.
+
+- **Tech Achievement 2**: Modify existing data
+The application provides functionality for modifying existing data. To edit the data, click on the wrench icon next to the row being edited. The application will prompt the user to enter in new details for each of the fields in the order they are shown in the table. In order to successfully edit the table, fields must not be black and dates must be entered in the format YYYY-MM-DD
 
 ### Design/Evaluation Achievements
-- **Design Achievement 1**: 
+- **Design Achievement 1**: Conducted a user study where the user was prompted to create a task, edit the task, and delete a task using the application.
+1. Provide the last name of each student you conduct the evaluation with.
+    Shia
+2. What problems did the user have with your design?
+    The user encountered problems with the interface to edit a task. When the user tried to cancel the edit, they were prompted to click through each of the fields regardless. I also noticed that the user entered the task description in the "Assigned To:" field multiple times, so I had to instruct the user that the purpose of the field was for the name of the person that the task is assigned to. 
+3. What comments did they make that surprised you?
+    The user asked how the "due date" column was calculated. This surprised me because I had not thought about how a user might respond to the lack of ability to edit that column, and I had to explain during the study that the calculation was based on the "created date" and "priority" in detail. The user also mentioned some way to sort the list of tasks by the different columns. 
+4. What would you change about the interface based on their feedback?
+    I would change the text "Assigned To" to something more descriptive. I would also change the interface from prompting the user through each of the fields to having dropdowns for each field separately and making an editable textbox for the name and task columns. I think this will be more intuitive and easy to use. 
+
+- **Design Achievement 2**: Conducted a user study where the user was prompted to create a task multiple tasks in the application with a variety of values for the fields
+1. Provide the last name of each student you conduct the evaluation with.
+    Garg
+2. What problems did the user have with your design?
+    One problem mentioned by the user was that the task list is not sorted. The user suggested sorting the table by due date or priority. The user also mentioned how the fields in the form do not clear when a task is submitted.
+3. What comments did they make that surprised you?
+    The user mentioned that the "Assigned To" column of the application does not serve a purpose. This surprised me because I was thinking about a senario where teams are using the application which makes it necessary to track which group member is assigned to which task. After the study, I informed the user about my thought process, and the user seemed to agree with my reasoning.
+4. What would you change about the interface based on their feedback?
+    I would add functionality to clear the form after the submit button has been pressed. I could also allow functionality to omit the "Assigned To" field of the form if the application is being used by a single user. One way to accomplish this may be to use a toggle for whether the to-do list is for a "single user" or
