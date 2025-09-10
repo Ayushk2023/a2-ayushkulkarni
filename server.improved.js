@@ -9,16 +9,18 @@ const http = require( "http" ),
       port = 3000
 
 const appdata = [
-  { "model": "toyota", "year": 1999, "mpg": 23 },
-  { "model": "honda", "year": 2004, "mpg": 30 },
-  { "model": "ford", "year": 1987, "mpg": 14} 
+  { "name": "testing", "task": "to do list", "priority": "High", "createdDate": "2025-09-06", "dueDate": "2025-09-07"}
 ]
 
 const server = http.createServer( function( request,response ) {
   if( request.method === "GET" ) {
     handleGet( request, response )    
-  }else if( request.method === "POST" ){
+  } else if (request.method === "DELETE") {
+    handleDelete(request, response)
+  } else if( request.method === "POST" ){
     handlePost( request, response ) 
+  } else if (request.method === "PUT") {
+    handleUpdate(request, response)
   }
 })
 
@@ -27,7 +29,11 @@ const handleGet = function( request, response ) {
 
   if( request.url === "/" ) {
     sendFile( response, "public/index.html" )
-  }else{
+  
+  } else if (request.url === "/data") {
+    response.writeHead( 200, "OK", {"Content-Type": "application/json" });
+    response.end(JSON.stringify(appdata));
+  } else{
     sendFile( response, filename )
   }
 }
@@ -41,11 +47,26 @@ const handlePost = function( request, response ) {
 
   request.on( "end", function() {
     console.log( JSON.parse( dataString ) )
+    
+    const parse = JSON.parse(dataString);
+  
+    let dueDate = new Date(parse.createdDate);
+    let numDays = 0;
+    if (parse.priority == "high") {
+      numDays = 1;
+    } else if (parse.priority == "medium") {
+      numDays = 3;
+    } else if (parse.priority == "low") {
+      numDays = 7;
+    }
+    dueDate.setDate(dueDate.getDate() + numDays)
+    dueDate = dueDate.toISOString().substring(0, 10)
 
-    // ... do something with the data here!!!
+    parse.dueDate = dueDate
+    appdata.push(parse)
 
-    response.writeHead( 200, "OK", {"Content-Type": "text/plain" })
-    response.end("test")
+    response.writeHead( 200, "OK", {"Content-Type": "application/json" })
+    response.end(JSON.stringify(appdata))
   })
 }
 
@@ -69,6 +90,53 @@ const sendFile = function( response, filename ) {
 
      }
    })
+}
+
+const handleDelete = function (request, response) {
+  const parts = request.url.split("/");
+  const index = parseInt(parts[2]);
+
+  appdata.splice(index, 1);
+  response.writeHead(200, "OK", {"Content-Type": "application/json" });
+  response.end(JSON.stringify(appdata))
+}
+
+const handleUpdate = function (request, response) {
+  const parts = request.url.split("/");
+  const index = parseInt(parts[2]);
+
+  let dataString = ""
+
+  request.on( "data", function( data ) {
+      dataString += data 
+  })
+
+  request.on( "end", function() {
+    console.log( JSON.parse( dataString ) )
+    
+    const parse = JSON.parse(dataString);
+    
+    appdata[index].name = parse.name || appdata[index].name
+    appdata[index].task = parse.task || appdata[index].task
+    appdata[index].priority = parse.priority || appdata[index].priority
+    appdata[index].createdDate = parse.createdDate || appdata[index].createdDate
+
+    let dueDate = new Date(appdata[index].createdDate);
+    let numDays = 0;
+    const priority = appdata[index].priority
+    if (priority == "high") {
+      numDays = 1;
+    } else if (priority == "medium") {
+      numDays = 3;
+    } else if (priority == "low") {
+      numDays = 7;
+    }
+    dueDate.setDate(dueDate.getDate() + numDays)
+    appdata[index].dueDate = dueDate.toISOString().substring(0, 10)
+
+    response.writeHead( 200, "OK", {"Content-Type": "application/json" })
+    response.end(JSON.stringify(appdata))
+})
 }
 
 server.listen( process.env.PORT || port )
